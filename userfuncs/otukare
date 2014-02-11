@@ -1,0 +1,7 @@
+title:otukare
+runlevel:3
+function:Reply
+target:/つかれた|疲れた/
+separate_thread?:true
+if_err_ignore?:show
+string:お疲れ様です！
