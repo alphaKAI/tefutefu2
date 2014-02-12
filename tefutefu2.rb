@@ -9,6 +9,7 @@ class TefuTefu2
                 :appname, :version, :bot_id, :bot_hn, :admins
 
   def initialize
+    @daemon = nil
     unless File.exist?("./resource/setting.xml")
       "Error : Not Found Setting File at \'./resource/setting.xml\'"
     end
@@ -40,6 +41,8 @@ class TefuTefu2
           self.bot_id = elem.children.text
         when /bot_hn/
           self.bot_hn = elem.children.text
+        when /daemon/
+          self.daemon = elem.children.text =~ /^true$/i ? true : false
       end
     }
     @admins = []
@@ -62,7 +65,11 @@ class TefuTefu2
     @te.read_tfs_inf
     @te.activate
     @te.id_list = @tl.get("/1.1/followers/ids.json", {"screen_name" => "tefutefu_tyou"})["ids"]
-    #@te.update("てふてふ2が起動しました version:#{self.version} Date:#{@te.getnow}")
+    @te.update("てふてふ2が起動しました version:#{self.version} Date:#{@te.getnow}")
+    if @daemon
+      puts "Daemon is true => Booting as daemon"
+      Process.daemon
+    end
     @tl.user_stream{|status_json|
         puts status_json["text"]
         @te.parser(status_json)

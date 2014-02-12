@@ -1,5 +1,5 @@
 <APPNAME>tefutefu2</APPNAME>
-<VERSION>tefutefu2 0.01 alpha</VERSION>
+<VERSION>tefutefu2 0.01 alpha fix 01</VERSION>
 <BOT_ID>tefutefu_tyou</BOT_ID>
 <BOT_HN>てふてふ</BOT_HN>
 <CONSUMER_KEY class="oauth"></CONSUMER_KEY>
@@ -9,3 +9,4 @@
 <ADMINS>
 	<ADMIN>alpha_kai_NET</ADMIN>
 </ADMINS>
+<DAEMON>true</DAEMON>

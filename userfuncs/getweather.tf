@@ -13,7 +13,8 @@ method:st
     
     tmp = get_weather(tweet, type)
     if tmp == 5
-      puts "地名が登録されてないよ！"
+      str = "地名が登録されてないよ！"
+      reply(@current_tweet["id_str"], @current_tweet["user"]["screen_name"], str)
       return nil
     end
     

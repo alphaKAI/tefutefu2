@@ -73,7 +73,7 @@ class TefuEngine
       end
     elsif status_json["text"]
       @current_tweet = status_json
-      defined_hash = {"USERNAME" => status_json["user"]["name"]}
+      defined_hash = {"USERNAME" => @current_tweet["user"]["name"]}
       if status_json["text"] =~ /^@#{@bot_id}/
         @current_tweet["reply"] = true
         else
@@ -118,7 +118,11 @@ class TefuEngine
         end
       }
       unless yet
-        eval(default) if default
+        begin
+          eval("default") if default
+        rescue Exception => e
+          puts "ERROR : [#{name}] => #{e}"
+        end
       end
     end
   end
@@ -183,9 +187,11 @@ class TefuEngine
 
   def do_as_separate_thread(do_func, join_ = true)
     if join_
-      Thread.new{ do_func.call }.join
+      #Thread.new{ do_func.call }.join
+      do_func.call
     else
-      Thread.new{ do_func.call }
+      #Thread.new{ do_func.call }
+      do_func.call
     end
   end
 

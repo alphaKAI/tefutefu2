@@ -57,6 +57,12 @@ Ruby 1.9.3
 * oauth
   
   
+##Change Log
+####0.01 alpha fix 01
+* バグ修正
+* デーモン化させるようにした(?)
+  
+
 ##つかいかた
 `git clone https://github.com/alphaKAI/tefutefu2.git`  
 してからgemいれてresource/setting.xmlにconsumerkeyなどを記述して  

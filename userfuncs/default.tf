@@ -18,7 +18,7 @@ method:st
         make_str = ""
         make_str = "┗(^o^)┛イタ電するぞぉぉぉｗｗ( ^o^)☎┐もしもしｗｗｗｗｗｗ{USERNAME}ですかｗｗｗｗｗｗｗｗ#{itaden[rand(itaden.size)]}( ^o^)Г☎ﾁﾝｯ"
       end
-      reply(@current_tweet["id_str"], @current_tweet["user"]["screen_name"], make_str)
+      reply(@current_tweet["id_str"], @current_tweet["user"]["screen_name"], replace_string({"USERNAME" => @current_tweet["user"]["name"]}, make_str))
     end
   end
 fn
