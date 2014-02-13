@@ -7,7 +7,7 @@ if_err_ignore?:show
 method:st
   def reload
     if @admins.index(@current_tweet["user"]["screen_name"])
-      self.read_tfs_inf
+      self.reload_tfs
       self.activate
     end
   end
