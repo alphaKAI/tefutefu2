@@ -74,8 +74,8 @@ class TefuTefu2
     @te.update("てふてふ2が起動しました version:#{self.version} Date:#{@te.getnow}")
 
     if @daemon
-      puts "Daemon is true => Booting as daemon"
-      #Process.daemon
+      puts "Daemon is true => Boot as daemon"
+      Process.daemon
     end
 
     @tl.user_stream{|status_json|

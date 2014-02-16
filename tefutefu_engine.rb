@@ -477,7 +477,7 @@ class TefuEngine
 
   def replace_regexp_string(hash, search_for, replace_hash)
     if hash[search_for]
-      @userfuncs[hash["title"]][search_for] = replace_string!(replace_hash, @userfuncs[hash["title"]][search_for])
+      @userfuncs[hash["title"]][search_for] = replace_string(replace_hash, @userfuncs[hash["title"]][search_for])
       @userfuncs[hash["title"]][search_for] = Regexp.new(hash[search_for].gsub(/\//, ""))
     end
   end
