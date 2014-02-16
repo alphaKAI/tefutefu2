@@ -22,7 +22,8 @@ Rubyで記述されてるぼっと、機能の説明は
             デフォルトでは3です, 1 <= RUNLEVEL <=5です  
    `function`:挙動を書いて下さい 後述するユーザー定義のメソッドを実行することも可能です  
             (Reply|Favorite|ReTweet|Fellow|Remove|DirectMessage|UserMethod:メソッド名)|And Other)  
-   `target`:反応する対象の判別方法(正規表現)  
+   `target`:反応する対象の判別(正規表現)  
+   `ignore`:無視する対象の判別(正規表現)  
    `string`:Tweet,Reply,DirectMessage等、文章を投稿する際に記述します  
           UserMethodを使用する場合は省略して下さい  
          Ex:(Replyを帰す場合){USERNAME}さん！ こんにちは！  
@@ -62,8 +63,6 @@ Ruby 1.9.3
 * バグ修正
 * デーモン化させるようにした(?)
   
-<<<<<<< HEAD
-=======
 ####0.01 alpha fix 02
 * バグ修正
 * 定義ファイルに新オプション[ignore]を追加
@@ -72,13 +71,9 @@ Ruby 1.9.3
 * バグ修正:リプライじのユーザー名が変わらないバグを解決
 * resource/setting.xmlにdebugを追加
   
-<<<<<<< HEAD
->>>>>>> 6e79b57... 0.01 beta バグ修正:リプライじのユーザー名が変わらないバグを解決
-=======
-####0.01 beta
+####0.01 beta fix 01
 * バグ修正:リプライ時に2重にリプライが飛ばされるバグを解消
 * resource/setting.xmlにdebugを追加
->>>>>>> 3ca07b7... 0.01 beta fix 01
 
 ##つかいかた
 `git clone https://github.com/alphaKAI/tefutefu2.git`  

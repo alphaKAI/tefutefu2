@@ -42,13 +42,9 @@ class TefuTefu2
         when /bot_hn/
           self.bot_hn = elem.children.text
         when /daemon/
-<<<<<<< HEAD
-          self.daemon = elem.children.text =~ /^true$/i ? true : false
-=======
           @daemon = elem.children.text =~ /true/i ? true : false
         when /debug/
           $debug_ = elem.children.text =~ /true/i ? true : false
->>>>>>> 6e79b57... 0.01 beta バグ修正:リプライじのユーザー名が変わらないバグを解決
       end
     }
     @admins = []
