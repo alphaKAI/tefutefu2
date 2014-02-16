@@ -288,7 +288,6 @@ class TefuEngine
       replace_regexp_string(hash, search_for, {"BOTNAME_HN" => @bot_hn, "BOT_ID" => @bot_id})
     }
 
-    puts :readtfs
     return nil
   end
 
@@ -306,60 +305,55 @@ class TefuEngine
     elsif status_json["text"]
       @current_tweet = status_json
 
-      puts "USER:#{defined_hash["USERNAME"]}" if $debug_
+      puts "USER:#{defined_hash["USERNAME"]}"
       if status_json["text"] =~ /^@#{@bot_id}/
         @current_tweet["reply"] = true
-        else
+      else
         @current_tweet["reply"] = false
       end
 
-      yet = false
+      status = false
       @userfuncs.each{|name, function|
-        if name == "egosa_fav"
-          puts "てふてふ" =~ function["target"] ? true:false
+        next if name =~ /default/
+        case(function["function"])
+          when /Reply/
+            if status_json["text"] =~ function["target"]
+              if function["ignore"] && !(status_json["text"] =~ function["ignore"])
+                puts "[INFO][ENGINE]:[Reply]"
+
+                reply(status_json["id_str"], status_json["user"]["screen_name"], replace_string(defined_hash, function["string"]))
+                status = true
+              end
+            end
+          when /Favorite/
+            if status_json["text"] =~ function["target"]
+              puts "[INFO][ENGINE]:[Favorite]"
+              favorite(status_json["id_str"])
+              status = true
+            end
+          when /Follow/
+            if status_json["text"] =~ function["target"]
+              puts "[INFO][ENGINE]:[Follow]"
+              follow(status_json["user"]["screen_name"])
+              status = true
+            end
+          when /UserMethod/
+            if status_json["text"] =~ function["target"]
+              puts "[INFO][ENGINE]:[UserMethod:#{name}]"
+              begin
+                lunch_func(name)
+                status = true
+              rescue Exception => e
+                puts "ERROR : [#{name}] => #{e}"
+              end
+            end
         end
-        Thread.new{#trial utilization
-          next if name =~ /default/
-          case(function["function"])
-            when /Reply/
-              if status_json["text"] =~ function["target"]
-                if function["ignore"] && !(status_json["text"] =~ function["ignore"])
-                  puts "[INFO][ENGINE]:[Reply]"
 
-                  reply(status_json["id_str"], status_json["user"]["screen_name"], replace_string(defined_hash, function["string"]))
-
-                  yet = true
-                end
-              end
-            when /Favorite/
-              if status_json["text"] =~ function["target"]
-                puts "[INFO][ENGINE]:[Favorite]"
-                favorite(status_json["id_str"])
-                yet = true
-              end
-            when /Follow/
-              if status_json["text"] =~ function["target"]
-                puts "[INFO][ENGINE]:[Follow]"
-                follow(status_json["user"]["screen_name"])
-                yet = true
-              end
-            when /UserMethod/
-              if status_json["text"] =~ function["target"]
-                puts "[INFO][ENGINE]:[UserMethod:#{name}]"
-                begin
-                  lunch_func(name)
-                  yet = true
-                rescue Exception => e
-                  puts "ERROR : [#{name}] => #{e}"
-                end
-              end
-          end
-
-          break if yet && function["runlevel"].to_i >= 3
-        }
+        break if status && function["runlevel"].to_i >= 3
       }
-      unless yet
+      if !status && @current_tweet["reply"]
         begin
+          puts "[INFO][ENGINE]:[Default]"
           eval("default") if default
         rescue Exception => e
           puts "ERROR : [#{name}] => #{e}"
@@ -371,8 +365,7 @@ class TefuEngine
   def lunch_func(func_name)
     uhash = @userfuncs[func_name]
     begin
-      eval(uhash["method"])#activate
-      if uhash["separate_thread?"] =~ /true/i ? true : false
+      if (uhash["separate_thread?"] =~ /true/i ? true : false)
         do_as_separate_thread(lambda{ eval(func_name) })
       else
         eval(func_name)
@@ -413,8 +406,9 @@ class TefuEngine
 
   def reload_tfs
     @file_count = dirf
+    @files      = Array.new
+    @userfuncs  = Hash.new
 
-    @files = Array.new
     dirf(lambda{ @files << @tmp if @tmp =~ /.*\.tf$/ }, lambda{ return nil })
 
     @files.each{|fn|
@@ -424,7 +418,7 @@ class TefuEngine
     @file_count_t = @file_count
   end
 
-    #========private==========
+  #========private==========
   private
 
     def dirf(lambda_val = lambda{ @i+=1 }, return_lambda = lambda{ return @i }, initalize_lambda = lambda{ @i=0 })

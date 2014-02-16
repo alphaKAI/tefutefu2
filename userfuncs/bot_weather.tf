@@ -69,7 +69,11 @@ method:st
       end
     }
 
-    return if exist_check == false
+    unless exist_check
+      str = "地名が登録されてないよ！"
+      reply(@current_tweet["id_str"], @current_tweet["user"]["screen_name"], str)
+      return nil
+    end
     return "ERROR2" if place == nil
 
     case weather_type

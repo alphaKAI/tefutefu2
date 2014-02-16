@@ -6,7 +6,7 @@ separate_thread?:true
 if_err_ignore?:show
 method:st
   def default
-    if @id_list.index(@current_tweet["user"]["id"]) && @current_tweet["reply"]
+    if @id_list.index(@current_tweet["user"]["id"])
       favorite(@current_tweet["id_str"])
       
       words = []

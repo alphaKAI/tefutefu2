@@ -13,7 +13,7 @@ class TefuTefu2
     unless File.exist?("./resource/setting.xml")
       "Error : Not Found Setting File at \'./resource/setting.xml\'"
     end
-    setting  = Nokogiri::HTML(open("./resource/setting.xml"))
+    setting  = Nokogiri::XML(open("./resource/setting.xml"))
     @oaut_hash = Hash.new
     setting.xpath('//*[@class="oauth"]').each{|elem|
       case(elem.name)
@@ -65,7 +65,7 @@ class TefuTefu2
     @te.bot_id  = @bot_id
     @te.bot_hn  = @bot_hn
     puts "admins:#{@te.admins}"
-    end
+  end
 
   def boot
     @te.read_tfs_inf

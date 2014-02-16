@@ -33,7 +33,7 @@ method:st
           array+=1
         }
         arrays=[[tmp2.split("\n")[0],tmp2.split("\n")[1],tmp2.split("\n")[2],tmp2.split("\n")[3]],[tmp2.split("\n")[4],tmp2.split("\n")[5],tmp2.split("\n")[6]]]
-        ["#{loc}の週間天気(3/1)\n#{arrays[0][0]}\n#{arrays[0][1]}"," (2/3)\n#{arrays[0][2]}\n#{arrays[0][3]}\n(続く)","(3/3)\n #{arrays[1][0]}\n#{arrays[1][1]}\n#{arrays[1][2]}"].each{|str|
+        ["#{loc}の週間天気(1/4)\n#{arrays[0][0]}\n#{arrays[0][1]}"," (2/4)\n#{arrays[0][2]}\n#{arrays[0][3]}\n(続く)", "(3/4)\n #{arrays[1][0]}\n#{arrays[1][1]}\n", "(4/4)\n#{arrays[1][2]}"].each{|str|
           reply(@current_tweet["id_str"], @current_tweet["user"]["screen_name"], str)
         }
     end

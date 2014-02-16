@@ -72,7 +72,13 @@ Ruby 1.9.3
 * バグ修正:リプライじのユーザー名が変わらないバグを解決
 * resource/setting.xmlにdebugを追加
   
+<<<<<<< HEAD
 >>>>>>> 6e79b57... 0.01 beta バグ修正:リプライじのユーザー名が変わらないバグを解決
+=======
+####0.01 beta
+* バグ修正:リプライ時に2重にリプライが飛ばされるバグを解消
+* resource/setting.xmlにdebugを追加
+>>>>>>> 3ca07b7... 0.01 beta fix 01
 
 ##つかいかた
 `git clone https://github.com/alphaKAI/tefutefu2.git`  
