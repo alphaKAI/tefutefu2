@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <APPNAME>tefutefu2</APPNAME>
 <VERSION>tefutefu2 0.01 alpha fix 01</VERSION>
 <BOT_ID>tefutefu_tyou</BOT_ID>
@@ -10,3 +11,18 @@
 	<ADMIN>alpha_kai_NET</ADMIN>
 </ADMINS>
 <DAEMON>true</DAEMON>
+=======
+<APPNAME>tefutefu2</APPNAME>
+<VERSION>tefutefu2 0.01 beta</VERSION>
+<BOT_ID>tefutefu_tyou</BOT_ID>
+<BOT_HN>てふてふ</BOT_HN>
+<CONSUMER_KEY class="oauth"></CONSUMER_KEY>
+<CONSUMER_SECRET class="oauth"></CONSUMER_SECRET>
+<ACCESS_TOKEN class="oauth"></ACCESS_TOKEN>
+<ACCESS_TOKEN_SECRET class="oauth"></ACCESS_TOKEN_SECRET>
+<ADMINS>
+	<ADMIN>alpha_kai_NET</ADMIN>
+</ADMINS>
+<DAEMON>true</DAEMON>
+<DEBUG>false</DEBUG>
+>>>>>>> 6e79b57... 0.01 beta バグ修正:リプライじのユーザー名が変わらないバグを解決

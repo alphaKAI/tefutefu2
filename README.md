@@ -62,6 +62,17 @@ Ruby 1.9.3
 * バグ修正
 * デーモン化させるようにした(?)
   
+<<<<<<< HEAD
+=======
+####0.01 alpha fix 02
+* バグ修正
+* 定義ファイルに新オプション[ignore]を追加
+  
+####0.01 beta
+* バグ修正:リプライじのユーザー名が変わらないバグを解決
+* resource/setting.xmlにdebugを追加
+  
+>>>>>>> 6e79b57... 0.01 beta バグ修正:リプライじのユーザー名が変わらないバグを解決
 
 ##つかいかた
 `git clone https://github.com/alphaKAI/tefutefu2.git`  
@@ -74,4 +85,4 @@ Blog <http://blog.alpha-kai-net.info>
 HP <http://alpha-kai-net.info>  
 Twitter <http://twitter.com/alpha_kai_NET>  
 Github <https://github.com/alphaKAI>  
-Mail to <alpha.kai.net@alpha-kai-net.info>
+Mail to <alpha.kai.net@alpha-kai-net.info>  

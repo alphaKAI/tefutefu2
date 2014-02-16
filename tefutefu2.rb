@@ -42,7 +42,13 @@ class TefuTefu2
         when /bot_hn/
           self.bot_hn = elem.children.text
         when /daemon/
+<<<<<<< HEAD
           self.daemon = elem.children.text =~ /^true$/i ? true : false
+=======
+          @daemon = elem.children.text =~ /true/i ? true : false
+        when /debug/
+          $debug_ = elem.children.text =~ /true/i ? true : false
+>>>>>>> 6e79b57... 0.01 beta バグ修正:リプライじのユーザー名が変わらないバグを解決
       end
     }
     @admins = []
@@ -66,10 +72,12 @@ class TefuTefu2
     @te.activate
     @te.id_list = @tl.get("/1.1/followers/ids.json", {"screen_name" => "tefutefu_tyou"})["ids"]
     @te.update("てふてふ2が起動しました version:#{self.version} Date:#{@te.getnow}")
+
     if @daemon
       puts "Daemon is true => Booting as daemon"
-      Process.daemon
+      #Process.daemon
     end
+
     @tl.user_stream{|status_json|
         puts status_json["text"]
         @te.parser(status_json)
